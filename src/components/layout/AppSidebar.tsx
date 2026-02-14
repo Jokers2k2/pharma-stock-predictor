@@ -11,15 +11,27 @@ import {
   ChevronLeft,
   ChevronRight,
   Pill,
+  ScanLine,
+  TrafficCone,
+  ClipboardList,
+  FileText,
+  MapPin,
+  Shield,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 const navItems = [
   { to: '/', icon: LayoutDashboard, label: 'Tableau de bord' },
+  { to: '/traffic-light', icon: TrafficCone, label: 'Trafic Light' },
   { to: '/inventory', icon: Package, label: 'Inventaire' },
   { to: '/predictions', icon: TrendingUp, label: 'Prédictions' },
   { to: '/alerts', icon: AlertTriangle, label: 'Alertes' },
   { to: '/analytics', icon: BarChart3, label: 'Analytique BI' },
+  { to: '/reception', icon: ClipboardList, label: 'Réception' },
+  { to: '/purchase-orders', icon: FileText, label: 'Bons de commande' },
+  { to: '/smart-scan', icon: ScanLine, label: 'Smart Scan' },
+  { to: '/fefo-picking', icon: MapPin, label: 'Picking FEFO' },
+  { to: '/audit-trail', icon: Shield, label: 'Audit Trail' },
   { to: '/operations', icon: Truck, label: 'Opérations' },
 ];
 
