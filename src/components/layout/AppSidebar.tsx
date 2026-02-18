@@ -17,22 +17,55 @@ import {
   FileText,
   MapPin,
   Shield,
+  FlaskConical,
+  ShoppingCart,
+  Users,
+  LineChart,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
-const navItems = [
-  { to: '/', icon: LayoutDashboard, label: 'Tableau de bord' },
-  { to: '/traffic-light', icon: TrafficCone, label: 'Trafic Light' },
-  { to: '/inventory', icon: Package, label: 'Inventaire' },
-  { to: '/predictions', icon: TrendingUp, label: 'Prédictions' },
-  { to: '/alerts', icon: AlertTriangle, label: 'Alertes' },
-  { to: '/analytics', icon: BarChart3, label: 'Analytique BI' },
-  { to: '/reception', icon: ClipboardList, label: 'Réception' },
-  { to: '/purchase-orders', icon: FileText, label: 'Bons de commande' },
-  { to: '/smart-scan', icon: ScanLine, label: 'Smart Scan' },
-  { to: '/fefo-picking', icon: MapPin, label: 'Picking FEFO' },
-  { to: '/audit-trail', icon: Shield, label: 'Audit Trail' },
-  { to: '/operations', icon: Truck, label: 'Opérations' },
+const navGroups = [
+  {
+    label: 'Vue d\'ensemble',
+    items: [
+      { to: '/', icon: LayoutDashboard, label: 'Tableau de bord' },
+      { to: '/traffic-light', icon: TrafficCone, label: 'Trafic Light' },
+      { to: '/kpi-reporting', icon: LineChart, label: 'KPI & Reporting' },
+    ],
+  },
+  {
+    label: 'Stock & Produits',
+    items: [
+      { to: '/inventory', icon: Package, label: 'Inventaire' },
+      { to: '/alerts', icon: AlertTriangle, label: 'Alertes' },
+      { to: '/analytics', icon: BarChart3, label: 'Analytique BI' },
+    ],
+  },
+  {
+    label: 'Prédictions & IA',
+    items: [
+      { to: '/predictions', icon: TrendingUp, label: 'Prédictions' },
+      { to: '/what-if', icon: FlaskConical, label: 'Simulation What-If' },
+      { to: '/reorder-recommendations', icon: ShoppingCart, label: 'Recommandations' },
+    ],
+  },
+  {
+    label: 'Opérations',
+    items: [
+      { to: '/reception', icon: ClipboardList, label: 'Réception' },
+      { to: '/purchase-orders', icon: FileText, label: 'Bons de commande' },
+      { to: '/smart-scan', icon: ScanLine, label: 'Smart Scan' },
+      { to: '/fefo-picking', icon: MapPin, label: 'Picking FEFO' },
+      { to: '/operations', icon: Truck, label: 'Opérations' },
+    ],
+  },
+  {
+    label: 'Clients & Qualité',
+    items: [
+      { to: '/client-segmentation', icon: Users, label: 'Segmentation clients' },
+      { to: '/audit-trail', icon: Shield, label: 'Audit Trail' },
+    ],
+  },
 ];
 
 export function AppSidebar() {
@@ -62,25 +95,36 @@ export function AppSidebar() {
       </div>
 
       {/* Nav */}
-      <nav className="flex-1 py-4 px-2 space-y-1 overflow-y-auto">
-        {navItems.map((item) => {
-          const isActive = location.pathname === item.to;
-          return (
-            <NavLink
-              key={item.to}
-              to={item.to}
-              className={cn(
-                'flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-all duration-200 group',
-                isActive
-                  ? 'bg-sidebar-accent text-sidebar-primary'
-                  : 'text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground'
-              )}
-            >
-              <item.icon className={cn('w-[18px] h-[18px] flex-shrink-0', isActive && 'text-sidebar-primary')} />
-              {!collapsed && <span className="truncate">{item.label}</span>}
-            </NavLink>
-          );
-        })}
+      <nav className="flex-1 py-3 px-2 space-y-4 overflow-y-auto">
+        {navGroups.map((group) => (
+          <div key={group.label}>
+            {!collapsed && (
+              <p className="text-[10px] uppercase tracking-widest text-sidebar-muted px-3 mb-1 font-semibold">
+                {group.label}
+              </p>
+            )}
+            <div className="space-y-0.5">
+              {group.items.map((item) => {
+                const isActive = location.pathname === item.to;
+                return (
+                  <NavLink
+                    key={item.to}
+                    to={item.to}
+                    className={cn(
+                      'flex items-center gap-3 px-3 py-2 rounded-lg text-sm transition-all duration-200',
+                      isActive
+                        ? 'bg-sidebar-accent text-sidebar-primary'
+                        : 'text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground'
+                    )}
+                  >
+                    <item.icon className={cn('w-[17px] h-[17px] flex-shrink-0', isActive && 'text-sidebar-primary')} />
+                    {!collapsed && <span className="truncate text-[13px]">{item.label}</span>}
+                  </NavLink>
+                );
+              })}
+            </div>
+          </div>
+        ))}
       </nav>
 
       {/* Settings + Collapse */}
