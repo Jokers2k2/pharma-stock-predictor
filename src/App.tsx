@@ -52,6 +52,9 @@ const App = () => (
             <Route path="/reorder-recommendations" element={<ReorderRecommendationsPage />} />
             <Route path="/client-segmentation" element={<ClientSegmentationPage />} />
             <Route path="/kpi-reporting" element={<KpiReportingPage />} />
+            <Route path="/settings" element={<SettingsPage />} />
+            <Route path="/notifications" element={<NotificationsPage />} />
+            <Route path="/profile" element={<ProfilePage />} />
           </Route>
           <Route path="*" element={<NotFound />} />
         </Routes>
