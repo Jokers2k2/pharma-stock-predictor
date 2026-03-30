@@ -20,7 +20,11 @@ import WhatIfPage from "./pages/WhatIfPage";
 import ReorderRecommendationsPage from "./pages/ReorderRecommendationsPage";
 import ClientSegmentationPage from "./pages/ClientSegmentationPage";
 import KpiReportingPage from "./pages/KpiReportingPage";
+import SettingsPage from "./pages/SettingsPage";
+import NotificationsPage from "./pages/NotificationsPage";
+import ProfilePage from "./pages/ProfilePage";
 import NotFound from "./pages/NotFound";
+import { OfflineIndicator } from "./components/OfflineIndicator";
 
 const queryClient = new QueryClient();
 
@@ -29,6 +33,7 @@ const App = () => (
     <TooltipProvider>
       <Toaster />
       <Sonner />
+      <OfflineIndicator />
       <BrowserRouter>
         <Routes>
           <Route element={<AppLayout />}>
@@ -48,6 +53,9 @@ const App = () => (
             <Route path="/reorder-recommendations" element={<ReorderRecommendationsPage />} />
             <Route path="/client-segmentation" element={<ClientSegmentationPage />} />
             <Route path="/kpi-reporting" element={<KpiReportingPage />} />
+            <Route path="/settings" element={<SettingsPage />} />
+            <Route path="/notifications" element={<NotificationsPage />} />
+            <Route path="/profile" element={<ProfilePage />} />
           </Route>
           <Route path="*" element={<NotFound />} />
         </Routes>

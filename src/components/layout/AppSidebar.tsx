@@ -68,6 +68,8 @@ const navGroups = [
   },
 ];
 
+import { Bell as BellIcon, UserCircle } from 'lucide-react';
+
 export function AppSidebar() {
   const [collapsed, setCollapsed] = useState(false);
   const location = useLocation();
@@ -130,8 +132,22 @@ export function AppSidebar() {
       {/* Settings + Collapse */}
       <div className="px-2 pb-4 space-y-1 border-t border-sidebar-border pt-4">
         <NavLink
+          to="/profile"
+          className={({ isActive }) => cn('flex items-center gap-3 px-3 py-2 rounded-lg text-sm transition-colors', isActive ? 'bg-sidebar-accent text-sidebar-primary' : 'text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground')}
+        >
+          <UserCircle className="w-[18px] h-[18px] flex-shrink-0" />
+          {!collapsed && <span>Profil</span>}
+        </NavLink>
+        <NavLink
+          to="/notifications"
+          className={({ isActive }) => cn('flex items-center gap-3 px-3 py-2 rounded-lg text-sm transition-colors', isActive ? 'bg-sidebar-accent text-sidebar-primary' : 'text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground')}
+        >
+          <BellIcon className="w-[18px] h-[18px] flex-shrink-0" />
+          {!collapsed && <span>Notifications</span>}
+        </NavLink>
+        <NavLink
           to="/settings"
-          className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground transition-colors"
+          className={({ isActive }) => cn('flex items-center gap-3 px-3 py-2 rounded-lg text-sm transition-colors', isActive ? 'bg-sidebar-accent text-sidebar-primary' : 'text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground')}
         >
           <Settings className="w-[18px] h-[18px] flex-shrink-0" />
           {!collapsed && <span>Paramètres</span>}
