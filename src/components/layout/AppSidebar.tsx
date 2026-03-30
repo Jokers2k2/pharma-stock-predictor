@@ -68,6 +68,8 @@ const navGroups = [
   },
 ];
 
+import { Bell as BellIcon, UserCircle } from 'lucide-react';
+
 export function AppSidebar() {
   const [collapsed, setCollapsed] = useState(false);
   const location = useLocation();
